@@ -2,7 +2,6 @@
 
 import React, { useMemo } from "react";
 
-// Background Beams Component
 export const BackgroundBeams = React.memo(({ className = "" }) => {
     const paths = [
         "M-380 -189C-380 -189 -312 216 152 343C616 470 684 875 684 875",
@@ -27,7 +26,6 @@ export const BackgroundBeams = React.memo(({ className = "" }) => {
         "M-247 -341C-247 -341 -179 64 285 191C749 318 817 723 817 723",
     ];
 
-    // Deterministic gradients
     const gradients = useMemo(() => {
         return paths.map((_, index) => {
             const duration = 10 + (index * 1.7) % 10;
@@ -63,10 +61,7 @@ export const BackgroundBeams = React.memo(({ className = "" }) => {
                     stroke-opacity: 0.4;
                     stroke-width: 0.5;
                 }
-
-                /* =======================
-                   WAITLIST BOX (TOP RIGHT)
-                   ======================= */
+                
                 .demo-container {
                     position: absolute;
                     top: 1rem;
@@ -78,7 +73,7 @@ export const BackgroundBeams = React.memo(({ className = "" }) => {
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
-                    z-index: 10; /* MUST be above SVG */
+                    z-index: 10;
                 }
 
                 .content-wrapper {
@@ -107,13 +102,13 @@ export const BackgroundBeams = React.memo(({ className = "" }) => {
                 .description {
                     color: rgb(115, 115, 115);
                     max-width: 32rem;
-                    margin: 0.5rem auto;
-                    font-size: 0.875rem;
+                    margin: 0.75rem auto;
+                    font-size: 0.9rem;
+                    line-height: 1.5;
                     text-align: center;
                     position: relative;
                     z-index: 10;
                 }
-
                 .input-field {
                     border-radius: 0.5rem;
                     border: 1px solid rgb(38, 38, 38);
@@ -126,22 +121,44 @@ export const BackgroundBeams = React.memo(({ className = "" }) => {
                     padding: 0.75rem 1rem;
                     font-size: 0.875rem;
                 }
-
                 .input-field::placeholder {
                     color: rgb(64, 64, 64);
                 }
-
                 .input-field:focus {
                     outline: none;
                     border-color: rgb(20, 184, 166);
                     box-shadow: 0 0 0 2px rgb(20, 184, 166);
                 }
-
                 @media (min-width: 768px) {
                     .title {
                         font-size: 4.5rem;
                     }
                 }
+                .login-button {
+                    border-radius: 0.5rem;
+                    border: 1px solid rgb(20, 184, 166);
+                    width: 100%;
+                    position: relative;
+                    z-index: 10;
+                    margin-top: 1rem;
+                    background-color: rgb(20, 184, 166);
+                    color: rgb(10, 10, 10);
+                    padding: 0.75rem 1rem;
+                    font-size: 0.875rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.2s ease-in-out;
+                }
+
+                .login-button:hover {
+                    background-color: rgb(13, 148, 136);
+                }
+
+                .login-button:focus {
+                    outline: none;
+                    box-shadow: 0 0 0 2px rgb(20, 184, 166);
+                }
+
             `}</style>
 
             <div className={`beams-container ${className}`}>
@@ -229,17 +246,11 @@ export const BackgroundBeams = React.memo(({ className = "" }) => {
                         </radialGradient>
                     </defs>
                 </svg>
-
-                {/* WAITLIST BOX */}
                 <div className="demo-container">
                     <div className="content-wrapper">
-                        <h1 className="title">ZENT.COM</h1>
+                        <h1 className="title">Z E N T</h1>
                         <p className="description">
-                            Welcome to MailJet, the best transactional email service on the web.
-                            We provide reliable, scalable, and customizable email solutions for
-                            your business. Whether you're sending order confirmations,
-                            password reset emails, or promotional campaigns, MailJet has got you
-                            covered.
+                            Monitor servers, track resources, and manage Docker containers in real time with Zent.
                         </p>
                         <input
                             type="text"
@@ -252,7 +263,7 @@ export const BackgroundBeams = React.memo(({ className = "" }) => {
                             className="input-field"
                         />
                         <input
-                            type="text"
+                            type="password"
                             placeholder="Password"
                             className="input-field"
                         />
@@ -261,6 +272,10 @@ export const BackgroundBeams = React.memo(({ className = "" }) => {
                             placeholder="Port"
                             className="input-field"
                         />
+
+                        <button className="login-button">
+                            Login
+                        </button>
                     </div>
                 </div>
             </div>

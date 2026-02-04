@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { BackgroundBeams } from "@/components/ui/background-beams";
+import {BackgroundBeams} from "@/app/components/background/background-beams";
+
+
 
 export function BackgroundBeamsDemo() {
     const [form, setForm] = useState({
@@ -87,7 +89,6 @@ export function BackgroundBeamsDemo() {
                     </button>
                 </div>
             </div>
-
             <BackgroundBeams />
         </div>
     );

@@ -2,10 +2,12 @@
 
 import React, { useState } from "react";
 import {BackgroundBeams} from "@/app/components/background/background-beams";
+import { useRouter } from "next/navigation";
 
 
 
 export function BackgroundBeamsDemo() {
+    const router = useRouter();
     const [form, setForm] = useState({
         host: "",
         username: "",
@@ -19,6 +21,7 @@ export function BackgroundBeamsDemo() {
 
     const handleLogin = () => {
         console.log("Logging in with:", form);
+        router.push("/dashboard"); // ✅ navigate to dashboard
     };
 
     const handleClear = () => {

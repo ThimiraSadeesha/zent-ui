@@ -1,10 +1,13 @@
 import Image from "next/image";
-import {BackgroundBeamsDemo} from "@/app/background";
+import {BackgroundBeamsDemo} from "@/app/pages/background/background";
 
 export default function Home() {
     return (
         <main>
             <BackgroundBeamsDemo />
+            <div className="absolute bottom-4 w-full text-center text-xs text-neutral-600">
+                Developed and Designed by Lumiraq Team
+            </div>
         </main>
     );
 }

@@ -9,7 +9,6 @@ import { useState } from "react";
 import Link from "next/link";
 
 const Dashboard = () => {
-    // Mock system data
     const [systemData] = useState({
         ram: {
             used_mb: "4211",

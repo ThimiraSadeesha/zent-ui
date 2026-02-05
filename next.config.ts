@@ -1,47 +1,33 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
-  reactCompiler: true,
-  allowedDevOrigins: [
-    "http://192.168.1.4:3000",
-    "local-origin.dev",
-    "*.local-origin.dev"
-  ],
-  turbopack: {
-    root: __dirname,
-    resolveAlias: {
-      "@/environments/environment": (() => {
-        const env =
-            process.env.NEXT_PUBLIC_ENV || process.env.NODE_ENV || "development";
-        const environmentFile =
-            env === "production"
-                ? "./src/environments/environment.production.ts"
-                : env === "qa"
-                    ? "./src/environments/environment.qa.ts"
-                    : "./src/environments/environment.development.ts";
-        return environmentFile;
-      })(),
+    turbopack: {
+        root: path.resolve(__dirname),
     },
-  },
-
-  webpack: (config) => {
-    const env =
-        process.env.NEXT_PUBLIC_ENV || process.env.NODE_ENV || "development";
-    const environmentFile =
-        env === "production"
-            ? "environment.production.ts"
-            : env === "qa"
-                ? "environment.qa.ts"
-                : "environment.development.ts";
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "@/environments/environment$": require("path").resolve(
-          __dirname,
-          `src/environments/${environmentFile}`
-      ),
-    };
-    return config;
-  },
+    async headers() {
+        return [
+            {
+                source: "/:path*",
+                headers: [
+                    {
+                        key: "Access-Control-Allow-Origin",
+                        value: process.env.NODE_ENV === "development"
+                            ? "http://127.0.0.1:3000"
+                            : "https://zent.lumiraq.com",
+                    },
+                    {
+                        key: "Access-Control-Allow-Methods",
+                        value: "GET, POST, PUT, DELETE, OPTIONS",
+                    },
+                    {
+                        key: "Access-Control-Allow-Headers",
+                        value: "Content-Type, Authorization",
+                    },
+                ],
+            },
+        ];
+    },
 };
 
 export default nextConfig;
